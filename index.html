@@ -1,2 +1,267 @@
-This is a placeholder/draft.
-Webpage will be active on Sep XX, 2022.
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>nerf2nerf</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="https://dorverbin.github.io/refnerf/img/refnerf_titlecard.jpg">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dorverbin.github.io/refnerf">
+    <meta property="og:title" content="nerf2nerf: Pairwise Registration of Neural Radiance Fields">
+    <meta property="og:description" content="We introduce a technique for pairwise registration of neural fields that extends classical optimization-based local registration (i.e. ICP) to operate on Neural Radiance Fields (NeRF) – neural 3D scene representations trained from collections ofcalibrated images. NeRF does not decompose illumination and color, so to make registration invariant to illumination, we introduce the concept of a “surface field” – a field distilled from a pre-trained NeRF model that measures the likelihood of a point being on the surface of an object. We then cast nerf2nerf registration as a robust optimization that iteratively seeks a rigid transformation that aligns the surface fields of the two scenes. We evaluate the effectiveness of our technique by introducing a dataset of pre-trained NeRF scenes – our synthetic scenes enable quantitative evaluations and comparisons to classical registration techniques, while our real scenes demonstrate the validity of our technique in real-world scenarios.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="nerf2nerf: Pairwise Registration of Neural Radiance Fields">
+    <meta name="twitter:description" content="We introduce a technique for pairwise registration of neural fields that extends classical optimization-based local registration (i.e. ICP) to operate on Neural Radiance Fields (NeRF) – neural 3D scene representations trained from collections ofcalibrated images. NeRF does not decompose illumination and color, so to make registration invariant to illumination, we introduce the concept of a “surface field” – a field distilled from a pre-trained NeRF model that measures the likelihood of a point being on the surface of an object. We then cast nerf2nerf registration as a robust optimization that iteratively seeks a rigid transformation that aligns the surface fields of the two scenes. We evaluate the effectiveness of our technique by introducing a dataset of pre-trained NeRF scenes – our synthetic scenes enable quantitative evaluations and comparisons to classical registration techniques, while our real scenes demonstrate the validity of our technique in real-world scenarios.">
+    <meta name="twitter:image" content="https://dorverbin.github.io/refnerf/img/refnerf_titlecard.jpg">
+
+
+    <!-- mirror: F0%9F%AA%9E&lt -->
+    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;%E2%9C%A8&lt;/text&gt;&lt;/svg&gt;">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/video_comparison.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="header" style="text-align: center; margin: auto;">
+        <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
+            <h2 class="col-md-12 text-center" id="title">
+                <b>nerf2nerf</b>: Pairwise Registration of Neural Radiance Fields<br>
+                <small>
+                    ICRA 2023 (Under Review)
+                </small>
+            </h2>
+        </div>
+        <div class="row" id="author-row" style="margin:auto;">
+            <div class="col-md-12 text-center" style="display: table; margin:auto">
+                <table class="author-table" id="author-table">
+                    <tr>
+			<td>
+				<table style="width:100%">
+                        		<td>
+                            			<a style="text-decoration:none" href="https://lilygoli.github.io/">
+                             			 Lily Goli
+                           			</a>
+                            			<br>University of Toronto<br>Vector Institute
+                        		</td>
+                        		<td>
+                            			<a style="text-decoration:none" href="http://drebain.com/">
+                              			Daniel Rebain
+                            			</a>
+                            			<br>University of <br>British Columbia
+                        		</td>
+                        		<td>
+                            			<a style="text-decoration:none" href="https://ca.linkedin.com/in/sara-sabour-63019132">
+                             			Sara Sabour
+                            			</a>
+                            			<br>University of Toronto<br>Vector Institute<br>Google Research
+                        		</td>
+				</table>
+			</td>	
+                    </tr>
+                    <tr>
+                        <td>
+				<table style="width:100%">
+					<td>
+                           		 	<a style="text-decoration:none" href="https://animesh.garg.tech">
+                                		Animesh Garg
+                            			</a>
+                            			<br>University of Toronto<br>NVIDIA
+                        			</td>
+                        		<td>
+                            			<a style="text-decoration:none" href="https://taiya.github.io/">
+                              			Andrea Tagliasacchi
+                            			</a>
+			                            <br>University of Toronto<br>Simon Frasor University<br>Google Research
+                        		</td>
+				</table>
+			</td>	
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('author-row').style.maxWidth = document.getElementById("title-row").clientWidth + 'px';
+    </script>
+    <div class="container" id="main">
+        <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2112.03907">
+                            <img src="./img/paper_image.jpg" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/S071rGezdNM">
+                            <img src="./img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://nerf2nerf.github.io/" target="_blank">
+                            <image src="img/database_icon.png" height="60px">
+                                <h4><strong>NeRF Dataset (Coming Soon!)</strong></h4>
+                            </a>
+                        </li>                          
+                        <li>
+                            <a href="https://nerf2nerf.github.io/" target="_blank">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code <br>(Coming Soon!)</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="video-compare-container" id="materialsDiv">
+                    <video class="video" id="materials" loop playsinline autoPlay muted src="video/place_holder1.mp4" onplay="resizeAndPlay(this)"></video>
+                    
+                    <canvas height=0 class="videoMerge" id="materialsMerge"></canvas>
+                </div>
+			</div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+We introduce a technique for pairwise registration of neural fields that extends classical optimization-based local registration (i.e. ICP) to operate on Neural Radiance Fields (NeRF) – neural 3D scene representations trained from collections ofcalibrated images. NeRF does not decompose illumination and color, so to make registration invariant to illumination, we introduce the concept of a “surface field” – a field distilled from a pre-trained NeRF model that measures the likelihood of a point being on the surface of an object. We then cast nerf2nerf registration as a robust optimization that iteratively seeks a rigid transformation that aligns the surface fields of the two scenes. We evaluate the effectiveness of our technique by introducing a dataset of pre-trained NeRF scenes – our synthetic scenes enable quantitative evaluations and comparisons to classical registration techniques, while our real scenes demonstrate the validity of our technique in real-world scenarios.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://youtube.com/embed/S071rGezdNM" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Surface Field
+                </h3>
+                <div class="text-justify">
+                    To enable renergy-based optimization for registration between NeRF scenes with different illumination, one cannot rely on radiance and instead needs to extract a geometric representation from NeRF that is independent of illumination and viewing direction. To address this we introduce surface field, a geometric representation that takes the value of 1 on object surfaces and 0 elsewhere. 
+                    
+                    <br><br>
+                    
+                </div>
+		<div class="text-center">
+                    <video id="refdir" width="100%" playsinline autoplay loop muted>
+                        <source src="video/density.mp4" type="video/mp4" />
+                    </video>
+                </div>
+		<div class="text-justify">
+			Surface field is designed using NeRF's density field. The density $\tau(t)$ of a point $t$ measures the differential probability of hitting a particle $s$ at a point (view-independent). Transmittance $\mathcal{T}(0\rightarrow t | r)$ is the probability that a ray $r$ hits no solid particle on its way to the point (view-dependent), and can be derived directly from density through integration along the ray. Using the multiplication theorem for independent events, we can then define the differential probability of hitting a <i>surface</i> while looking from a certain viewing direction as the product of density and transmittance (view-dependent):
+		<br><br>
+                    
+                </div>
+		<br>
+                <div class="text-center">
+                    <img src="./img/surface_formula1.png" width="40%">
+                </div>
+                <br>
+		<div class="text-justify">
+			To achieve view-independence, we define the surface field as the maximum of the likelihoods of hitting a surface given ray travelling from any camera $o$ through the point $x$:
+		<br><br>
+                    
+                </div>
+		<br>
+                <div class="text-center">
+                    <img src="./img/surface_formula2.png" width="50%">
+                </div>
+                <br>
+		<div class="text-justify">
+			To obtain a conservative estimate of surface field we can threshold the field at $\epsilon$: 
+		<br><br>
+                    
+                </div>
+		<br>
+                <div class="text-center">
+                    <img src="./img/surface_formula3.png" width="30%">
+                </div>
+                <br>
+		<div class="text-center">
+                    <video id="refdir" width="102%" playsinline autoplay loop muted>
+                        <source src="video/1Dsignal.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                
+            </div>
+        </div>
+	
+        
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@article{goli2022nerf2nerf,
+    title={{nerf2nerf}: Pairwise Registration of Neural Radiance Fields},
+    author={Lily Goli, Daniel Rebain, Sara Sabour, Animesh Garg, Andrea Tagliasacchi},
+    journal={},
+    year={2022}
+}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                    <br>
+                The website template was borrowed from <a href="https://dorverbin.github.io/refnerf/">Dor Verbin</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>
