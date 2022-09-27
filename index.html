@@ -4,7 +4,6 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>nerf2nerf</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js" type="text/javascript"></script>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -215,7 +214,7 @@ We introduce a technique for pairwise registration of neural fields that extends
                     </video>
                 </div>
 		<div class="text-justify">
-			Surface field is designed using NeRF's density field. The density $\tau(t)$ of a point $t$ measures the differential probability of hitting a particle $s$ at a point (view-independent). Transmittance $\mathcal{T}(0\rightarrow t | r)$ is the probability that a ray $r$ hits no solid particle on its way to the point (view-dependent), and can be derived directly from density through integration along the ray. Using the multiplication theorem for independent events, we can then define the differential probability of hitting a <i>surface</i> while looking from a certain viewing direction as the product of density and transmittance (view-dependent):
+			Surface field is designed using NeRF's density field. The density <img src="./img/tau.jpg"> of a point $t$ measures the differential probability of hitting a particle <img src="./img/s.jpg"> at a point (view-independent). Transmittance <img src="./img/transmittance.jpg"> is the probability that a ray <img src="./img/r.jpg"> hits no solid particle on its way to the point (view-dependent), and can be derived directly from density through integration along the ray. Using the multiplication theorem for independent events, we can then define the differential probability of hitting a <i>surface</i> while looking from a certain viewing direction as the product of density and transmittance (view-dependent):
 		<br><br>
                     
                 </div>
