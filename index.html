@@ -234,7 +234,7 @@ We introduce a technique for pairwise registration of neural fields that extends
                 </div>
                 <br>
 		<div class="text-justify">
-			To obtain a conservative estimate of surface field we can threshold the field at $\epsilon$: 
+			To obtain a conservative estimate of surface field we can threshold the field at ε: 
 		<br><br>
                     
                 </div>
@@ -251,7 +251,59 @@ We introduce a technique for pairwise registration of neural fields that extends
                 
             </div>
         </div>
-	
+	<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Energy-based Optimization
+                </h3>
+                <div class="text-justify">
+                    By utilizing surface fields, we perform an energy-based optimization to find the optimal rigid registration to align target object in a pair of scenes. Our loss function consists of <i> Keypoint Energy</i> and <i>Matching Energy</i>. Keypoint energy provides an initial approximate solution by minimizing the ditance between manually annotated keypoint coordinates, and is then gradually annealed through the optimization. The robust matching energy compares the surface field of the two scenes on an active set of samples, given the current estimate of the rigid transform. To make the comparison robust to outliers, we utilize a robust kernel  <img src="./img/kappa.jpg"> and apply it on our residuals.
+                    
+                    <br><br>
+                    
+                </div>
+		<br>
+                <div class="text-center">
+                    <img src="./img/matching_energy.jpg" width="50%">
+                </div>
+                <br>
+		<div class="text-justify">
+                    
+                    Performing gradient-based optimization on a field with a co-domain of {0,1} is challenging, hence we smooth the surface field by convolving the categorical
+field with a zero-mean Gaussian of isotropic covariance matrix <img src="./img/cov.jpg">, and derive <img src="./img/smooth_surface.jpg">. The residual is then efined using this smooth surface field:
+                    <br><br>
+                    
+                </div>
+		<br>
+                <div class="text-center">
+                    <img src="./img/residual_formula.jpg" width="50%">
+                </div>
+                <br>
+		<div class="text-center">
+                    <video id="refdir" width="102%" playsinline autoplay loop muted>
+                        <source src="video/surfacevssmooth.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+        </div>	
+ 	<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Sampling
+                </h3>
+                <div class="text-justify">
+                   A Metropolis-Hastings sampling algorithm is used to iteratively update set of samples. The sample set is initializaed by the keypoints and every N=20 iterations is updated by adding uniform noise to current set and accepting new points that are <i> in close correspondence</i>, <i> not too close to current set of samples </i> and <i> are close to surface</i>.
+                    <br><br>
+                    
+                </div>
+                <br>
+		<div class="text-center">
+                    <video id="refdir" width="50%" playsinline autoplay loop muted>
+                        <source src="video/sampling.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+        </div>	
         
             
         <div class="row">
