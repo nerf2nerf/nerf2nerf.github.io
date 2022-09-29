@@ -70,9 +70,9 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
             <h2 class="col-md-12 text-center" id="title">
                 <b>nerf2nerf</b>: Pairwise Registration of Neural Radiance Fields<br>
-                <small>
+                <!-- <small>
                     ICRA 2023 (Under Review)
-                </small>
+                </small>-->
             </h2>
         </div>
         <div class="row" id="author-row" style="margin:auto;">
@@ -159,17 +159,18 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
                 </div>
         </div>
 
-
-
-        <div class="row">
+	<div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="video-compare-container" id="materialsDiv">
-                    <video class="video" id="materials" loop playsinline autoPlay muted src="video/place_holder1.mp4" onplay="resizeAndPlay(this)"></video>
+                
+                <div class="text-center">
                     
-                    <canvas height=0 class="videoMerge" id="materialsMerge"></canvas>
+                        <img src="./img/teaser.png" width="100%">
+                   
                 </div>
-			</div>
+            </div>
         </div>
+
+        
 
 
         <div class="row">
@@ -182,21 +183,7 @@ We introduce a technique for pairwise registration of neural fields that extends
                 </p>
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Video
-                </h3>
-                <div class="text-center">
-                    <div style="position:relative;padding-top:56.25%;">
-                        <iframe src="https://youtube.com/embed/S071rGezdNM" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+	
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
@@ -310,6 +297,20 @@ field with a zero-mean Gaussian of isotropic covariance matrix <img src="./img/c
                     Results
                 </h3>
 		<div class="text-justify">
+                  Registration results:
+                    
+                </div>
+                <br>
+		
+           	<div class="text-center">
+                	<div class="video-compare-container" id="materialsDiv">
+                    	<video class="video" id="materials" loop playsinline autoPlay muted src="video/place_holder1.mp4" onplay="resizeAndPlay(this)"></video>
+                    
+                   	<canvas height=0 class="videoMerge" id="materialsMerge"></canvas>
+               		</div>
+		</div>
+        	<br>
+		<div class="text-justify">
                   Comparison to <a href="http://vladlen.info/papers/fast-global-registration.pdf">Fast Global Registration</a> applied to point clouds extracted from NeRF estimated depth map:
                     
                 </div>
@@ -342,7 +343,18 @@ field with a zero-mean Gaussian of isotropic covariance matrix <img src="./img/c
             </div>
         </div>	
         
-            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://youtube.com/embed/S071rGezdNM" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>    
        
             
         <div class="row">
