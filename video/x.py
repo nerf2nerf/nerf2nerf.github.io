@@ -85,10 +85,10 @@ plt.tight_layout(pad=3.4, w_pad=0.5, h_pad=1.0)
 
 
 axb = plt.axes([0.32, 0.05, 0.33, 0.03])
-sb = Slider(axb, 'band', 0.05, 0.65, valinit=0.05)
+sb = Slider(axb, 'Width', 0.05, 0.65, valinit=0.05)
 
 axb2 = plt.axes([0.32, 0.01, 0.33, 0.03])
-sb2 = Slider(axb2, 'noise', 0.1, 2, valinit=0.1)
+sb2 = Slider(axb2, 'Amplitude', 0.1, 2, valinit=0.1)
 
 def update(val):
     fig[0].set_data((x,density(x, val, sb2.val)))
