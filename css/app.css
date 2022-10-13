@@ -203,3 +203,32 @@ span.highlight {
     overflow:hidden;
     display:block;
 }
+
+ ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+
+  
+li {
+            float: left;
+	    margin: fill;
+            padding: fill;
+	    width: 25%
+   }
+  
+li a {
+            display: block;
+            color: #1772d0;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+     }
+li a:hover {
+            background-color: #e6e6e6;
+            color: rgb(239 147 56);
+     }
+
