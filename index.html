@@ -115,7 +115,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
                             			<a style="text-decoration:none" href="https://taiya.github.io/">
                               			Andrea Tagliasacchi
                             			</a>
-			                            <br>University of Toronto<br>Simon Frasor University<br>Google Research
+			                            <br>University of Toronto<br>Simon Fraser University<br>Google Research
                         		</td>
 				</table>
 			</td>	
@@ -292,11 +292,19 @@ field with a zero-mean Gaussian of isotropic covariance matrix <img src="./img/c
                 </div>
                 <br>
 		
-		<div>
-			<video id="sample" width="30%" playsinline autoplay loop muted>
-                        <source src="video/sampling.mp4" type="video/mp4" />
-                    </video>
-		</div>
+		<table>
+		    <tr >
+			<td>
+			   <video class="video" id="s1"  width="100%"  loop playsinline autoPlay muted src="video/lego_all.mp4" onplay="resizeAndPlay(this)"></video>
+			  
+		       </td>
+			<td>
+			    <video class="video" id="s2"  width="100%"  loop playsinline autoPlay muted src="video/pip_all.mp4" onplay="resizeAndPlay(this)"></video>
+		       </td>
+		     
+		    </tr >
+		    
+		</table>
             </div>
         </div>	
         <div class="row">
